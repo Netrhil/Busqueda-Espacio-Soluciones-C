@@ -8,6 +8,19 @@ typedef struct Monedero {
 	int cantidadCien;
 	int cantidadCincuenta;
 	int cantidadDiez;
+    int mayor;
 } Monedero;
 
-Monedero monedero = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+Monedero monedero = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+typedef struct Solucion {
+    int VeinteMil;
+	int DiezMil;
+	int CincoMil;
+	int DosMil;
+	int UnMil;
+	int Quinintos;
+	int Cien;
+	int Cincuenta;
+	int Diez;
+} Solucion;

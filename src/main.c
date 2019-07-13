@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "estructuras/estructuras.h"
+#include "dominio/espacio-soluciones.h"
 #include "controlador-ficheros/leer.h"
 
 int main(int argc, char **argv){
@@ -29,15 +30,9 @@ int main(int argc, char **argv){
         switch (opcion) {
             case '1':
                 obtenerMonedero();
-                printf(" %d\n", monedero.cantidadVeinteMil);
-                printf(" %d\n", monedero.cantidadUnMil);
-                printf(" %d\n", monedero.cantidadCincuenta);
-                printf(" %d\n", monedero.cantidadDiez);
-                printf(" %d\n", monedero.cantidadDiezMil);
-                
                 break;
             case '2':
-
+                generarEspacios();
                 break;
             case '3':
                 puts("Adios!");
