@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "estructuras/estructuras.h"
-#include "dominio/espacio-soluciones.h"
-#include "controlador-ficheros/leer.h"
+#include "dominio/espacio-soluciones.c"
+#include "controlador-ficheros/leer.c"
 
 int main(int argc, char **argv){
     bool enPrograma = true;

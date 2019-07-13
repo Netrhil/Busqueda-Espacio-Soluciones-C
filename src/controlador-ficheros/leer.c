@@ -35,7 +35,6 @@ void obtenerMonedero() {
 
     int numero;
     int cantidadLinea = 0;
-    int mayorCantidad = 0;
     int valorBillete;
 
     while (fscanf(manejadorArchivos, "%d", &numero) == 1) {
@@ -43,8 +42,6 @@ void obtenerMonedero() {
         if(cantidadLinea % 2 == 0) {
             valorBillete = numero;
         } else {
-            if(numero > mayorCantidad) mayorCantidad = numero;
-
             switch (valorBillete) {
                 case 20000:
                     monedero.cantidadVeinteMil =+ numero;
@@ -79,6 +76,5 @@ void obtenerMonedero() {
         cantidadLinea++;
     }
 
-    monedero.mayor = mayorCantidad;
     fclose(manejadorArchivos); 
 }
