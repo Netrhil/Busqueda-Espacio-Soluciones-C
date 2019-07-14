@@ -177,18 +177,6 @@ int ** generarEspacios() {
         monedero.cantidadVeinteMil == solucion[8])
     ){
         sumarPos0();
-        
-
-        /* soluciones[auxSoluciones].VeinteMil = solucion[8];
-        soluciones[auxSoluciones].DiezMil = solucion[7];
-        soluciones[auxSoluciones].CincoMil = solucion[6];
-        soluciones[auxSoluciones].DosMil = solucion[5];
-        soluciones[auxSoluciones].UnMil = solucion[4];
-        soluciones[auxSoluciones].Quinintos = solucion[3];
-        soluciones[auxSoluciones].Cien = solucion[2];
-        soluciones[auxSoluciones].Cincuenta = solucion[1];
-        soluciones[auxSoluciones].Diez = solucion[0];
-        soluciones[auxSoluciones].esSolucion = false; */
 
              soluciones[auxSoluciones][0] = solucion[0];
              soluciones[auxSoluciones][1] = solucion[1];
@@ -211,47 +199,159 @@ int ** generarEspacios() {
 }
 
 
-void restriccionValor( int valor) {
+void restriccionSoloValor( int valor) {
     
     int ** soluciones = generarEspacios();
-   
-    for (size_t i = 0; i < numeroSoluciones; i++) {
-        int valorSolucion = 0;
-        valorSolucion = soluciones[i][0] * 10 +
-                        soluciones[i][1] * 100 +
-                        soluciones[i][2] * 50 +
-                        soluciones[i][3]  * 500+
-                        soluciones[i][4] * 1000+
-                        soluciones[i][5] * 2000 +
-                        soluciones[i][6] * 5000+
-                        soluciones[i][7] * 10000+
-                        soluciones[i][8] * 20000;
+    int menorCantidad = 99999;
+    int indiceSolucion;
+    bool haySolucion = false;
 
+    for (size_t i = 0; i < numeroSoluciones; i++) {
         
+        int valorSolucion = soluciones[i][0] * 10 +
+                            soluciones[i][1] * 50 +
+                            soluciones[i][2] * 100 +
+                            soluciones[i][3] * 500+
+                            soluciones[i][4] * 1000+
+                            soluciones[i][5] * 2000 +
+                            soluciones[i][6] * 5000+
+                            soluciones[i][7] * 10000+
+                            soluciones[i][8] * 20000;
+        
+        int cantidadElementos = soluciones[i][0] +
+                                soluciones[i][1] +
+                                soluciones[i][2] +
+                                soluciones[i][3] +
+                                soluciones[i][4] +
+                                soluciones[i][5] +
+                                soluciones[i][6] +
+                                soluciones[i][7] +
+                                soluciones[i][8] ;
+
         if(valorSolucion == valor) {
-            
-            printf("10: %i \n", soluciones[i][0]);
-            printf("50: %i \n", soluciones[i][1]);
-            printf("100: %i \n", soluciones[i][2]);
-            printf("500: %i \n", soluciones[i][3]);
-            printf("1000: %i \n", soluciones[i][4]);
-            printf("2000: %i \n", soluciones[i][5]);
-            printf("5000: %i \n", soluciones[i][6]);
-            printf("10000: %i\n", soluciones[i][7] );
-            printf("20000: %i \n", soluciones[i][8]); 
-            printf(" valorSolucion: %i\n" , valorSolucion);
-            puts("Solucion : ");
-                 
+            haySolucion = true;
+            if( menorCantidad > cantidadElementos) {
+                menorCantidad = cantidadElementos;
+                indiceSolucion = i;
+            }
         }
     }
+
+    if (haySolucion) {
+            puts(" Solucion : ");
+            printf("10: %i \n", soluciones[indiceSolucion][0]);
+            printf("50: %i \n", soluciones[indiceSolucion][1]);
+            printf("100: %i \n", soluciones[indiceSolucion][2]);
+            printf("500: %i \n", soluciones[indiceSolucion][3]);
+            printf("1000: %i \n", soluciones[indiceSolucion][4]);
+            printf("2000: %i \n", soluciones[indiceSolucion][5]);
+            printf("5000: %i \n", soluciones[indiceSolucion][6]);
+            printf("10000: %i\n", soluciones[indiceSolucion][7] );
+            printf("20000: %i \n", soluciones[indiceSolucion][8]);  
+    } else {
+        puts("No hay Solucion al Problema :c");
+    }
+
+    free(soluciones);
     sleep(5);    
 }
 
-void restriccionMoneda() {
+void restriccionMonedas(int valor) {
+    int ** soluciones = generarEspacios();
+    int menorCantidad = 99999;
+    int indiceSolucion;
+    bool haySolucion = false;
+
+    if( valor < 1000) {
+
+        for (size_t i = 0; i < numeroSoluciones; i++) {
+            
+            int valorSolucion = soluciones[i][0] * 10 +
+                                soluciones[i][1] * 50 +
+                                soluciones[i][2] * 100 +
+                                soluciones[i][3] * 500;
+            
+            int cantidadElementos = soluciones[i][0] +
+                                    soluciones[i][1] +
+                                    soluciones[i][2] +
+                                    soluciones[i][3] ;
+
+            if(valorSolucion == valor) {
+                haySolucion = true;
+                if( menorCantidad > cantidadElementos) {
+                    menorCantidad = cantidadElementos;
+                    indiceSolucion = i;
+                }
+            }
+        }
+
+        if (haySolucion) {
+                puts(" Solucion : ");
+                printf("10: %i \n", soluciones[indiceSolucion][0]);
+                printf("50: %i \n", soluciones[indiceSolucion][1]);
+                printf("100: %i \n", soluciones[indiceSolucion][2]);
+                printf("500: %i \n", soluciones[indiceSolucion][3]);
+        } else {
+            puts("No hay Solucion al Problema :c");
+        }
+    } else {
+        puts("No hay Solucion al Problema :c");
+    }
+
+    free(soluciones);
+    sleep(5);
 
 }
 
-void restriccionesBilletes() {
+void restriccionesBilletes( int valor) {
+
+    int ** soluciones = generarEspacios();
+    int menorCantidad = 99999;
+    int indiceSolucion;
+    bool haySolucion = false;
+
+    if(valor >= 1000) {
+
+        for (size_t i = 0; i < numeroSoluciones; i++) {
+            
+            int valorSolucion = soluciones[i][4] * 1000+
+                                soluciones[i][5] * 2000 +
+                                soluciones[i][6] * 5000+
+                                soluciones[i][7] * 10000+
+                                soluciones[i][8] * 20000;
+            
+            int cantidadElementos = soluciones[i][4] +
+                                    soluciones[i][5] +
+                                    soluciones[i][6] +
+                                    soluciones[i][7] +
+                                    soluciones[i][8] ;
+
+            if(valorSolucion == valor) {
+                haySolucion = true;
+                if( menorCantidad > cantidadElementos) {
+                    menorCantidad = cantidadElementos;
+                    indiceSolucion = i;
+                }
+            }
+        }
+
+        if (haySolucion) {
+                puts(" Solucion : ");
+                printf("1000: %i \n", soluciones[indiceSolucion][4]);
+                printf("2000: %i \n", soluciones[indiceSolucion][5]);
+                printf("5000: %i \n", soluciones[indiceSolucion][6]);
+                printf("10000: %i\n", soluciones[indiceSolucion][7] );
+                printf("20000: %i \n", soluciones[indiceSolucion][8]);  
+        } else {
+            puts("No hay Solucion al Problema :c");
+        }
+    }
+    else {
+            puts("No hay Solucion al Problema :c");
+    }
+
+    free(soluciones);
+    sleep(5); 
 
 }
 
@@ -267,13 +367,13 @@ void menuVuelto(char opcion) {
 
     switch (opcion) {
         case '1':
-            
+            restriccionMonedas(vuelto);
             break;
         case '2':
-           
+            restriccionesBilletes(vuelto);
             break;
         case '3':
-            restriccionValor(vuelto);
+            restriccionSoloValor(vuelto);
             break;
         }
     }
