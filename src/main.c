@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
+
 #include "estructuras/estructuras.h"
 #include "dominio/espacio-soluciones.c"
 #include "controlador-ficheros/leer.c"
@@ -9,16 +11,14 @@ int main(int argc, char **argv){
     bool enPrograma = true;
     
     char entradaUsuarioMenu;
-    
-    system("clear");
-    
-    puts("_____________________________________________");
-    puts("---------------- Bienvenido! ----------------");
-    puts("");
+  
 
     while(enPrograma) {
+        system("clear");
+        puts("_____________________________________________");
+        puts("---------------- Bienvenido! ----------------");
+        puts("");
 
-        puts(" Escoga una opcion: ");
         puts("  1) Cargar archivo con dinero.");
         puts("  2) Calcular vuelto.");
         puts("  3) Salir.");
@@ -32,7 +32,7 @@ int main(int argc, char **argv){
                 obtenerMonedero();
                 break;
             case '2':
-                generarEspacios();
+                subMenu();
                 break;
             case '3':
                 puts("Adios!");
@@ -40,7 +40,8 @@ int main(int argc, char **argv){
                 break;
             
             default:
-                puts("Opcion invalida :( ");
+                puts("---------------- Opcion invalida :( ---------------");
+                sleep(1);
         }
     }
 

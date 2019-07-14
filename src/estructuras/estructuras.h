@@ -24,4 +24,3 @@ typedef struct Solucion {
 	int Diez;
 	bool esSolucion;
 } Solucion;
-
